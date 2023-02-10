@@ -1,4 +1,5 @@
 import os
+import psycopg2
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -20,7 +21,7 @@ class CustomUser(AbstractUser):
         return self.email
 
 def get_image_filename(instance, filename):
-    name = instance.product.name
+    name = instance.user.username
     slug = slugify(name)
     return f"products/{slug}-{filename}"
 
